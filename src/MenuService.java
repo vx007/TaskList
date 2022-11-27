@@ -139,8 +139,9 @@ public class MenuService {
     }
 
     public static void findDay() {
+        LocalDate date = inputTime().toLocalDate();
         for (Map.Entry<Integer, Task> entry : taskService.getTasks()) {
-            if (matchDay(entry.getValue(), inputTime().toLocalDate())) {
+            if (matchDay(entry.getValue(), date)) {
                 System.out.println(entry);
             }
         }
@@ -150,34 +151,34 @@ public class MenuService {
         boolean result = false;
         switch (task.getRepeat()) {
             case SINGLE:
-                if (day == task.getTime().toLocalDate()) {
+                if (day.equals(task.getTime().toLocalDate())) {
                     result = true;
                     break;
                 }
             case DAILY:
                 for (int i = 0; i < Integer.MAX_VALUE; i++) {
-                    if (day == task.getTime().plusDays(i).toLocalDate()) {
+                    if (day.equals(task.getTime().plusDays(i).toLocalDate())) {
                         result = true;
                         break;
                     }
                 }
             case WEEKLY:
                 for (int i = 0; i < Integer.MAX_VALUE; i++) {
-                    if (day == task.getTime().plusWeeks(i).toLocalDate()) {
+                    if (day.equals(task.getTime().plusWeeks(i).toLocalDate())) {
                         result = true;
                         break;
                     }
                 }
             case MONTHLY:
                 for (int i = 0; i < Integer.MAX_VALUE; i++) {
-                    if (day == task.getTime().plusMonths(i).toLocalDate()) {
+                    if (day.equals(task.getTime().plusMonths(i).toLocalDate())) {
                         result = true;
                         break;
                     }
                 }
             case YEARLY:
-                for (int i = 0; i < Integer.MAX_VALUE; i++) {
-                    if (day == task.getTime().plusYears(i).toLocalDate()) {
+                for (int i = 0; i < 1000; i++) {
+                    if (day.equals(task.getTime().plusYears(i).toLocalDate())) {
                         result = true;
                         break;
                     }
