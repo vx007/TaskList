@@ -47,11 +47,12 @@ public class MenuService {
     }
 
     public static void inputTask() {
-        taskService.addTask(new Task(inputName(),
+        int id = taskService.addTask(new Task(inputName(),
                 inputDesk(),
                 inputType(),
                 inputTime(),
                 inputRepeat()));
+        System.out.println("Создана задача с ИД: " + id);
     }
 
     public static String inputName() {
@@ -78,7 +79,7 @@ public class MenuService {
     public static LocalDateTime inputTime() {
         LocalDateTime time = null;
         do {
-            System.out.print("Введите время в формате ДД.ММ.ГГГГ чч:мм : ");
+            System.out.print("Введите время начиная с текущего момента в формате ДД.ММ.ГГГГ чч:мм : ");
             String dateTime = scanner.next() + " " + scanner.next();
             if (dateTime.matches("\\d{2}.\\d{2}.\\d{4} \\d{2}:\\d{2}")) {
                 time = parseDateTime(dateTime);
@@ -135,7 +136,8 @@ public class MenuService {
     public static void removeTask() {
         printTasks();
         System.out.print("Введите id задачи: ");
-        taskService.removeTask(scanner.nextInt());
+        int id = taskService.removeTask(scanner.nextInt());
+        System.out.println("Удаланена задача с ИД: " + id);
     }
 
     public static void findDay() {

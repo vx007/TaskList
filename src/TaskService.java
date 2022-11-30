@@ -6,12 +6,14 @@ public class TaskService {
 
     private final Map<Integer, Task> tasks = new HashMap<>();
 
-    public void addTask(Task task){
+    public int addTask(Task task){
         tasks.put(task.getId(), task);
+        return task.getId();
     }
 
-    public void removeTask(int id){
+    public int removeTask(int id){
         tasks.remove(id);
+        return id;
     }
 
     public Set<Map.Entry<Integer,Task>> getTasks() {
